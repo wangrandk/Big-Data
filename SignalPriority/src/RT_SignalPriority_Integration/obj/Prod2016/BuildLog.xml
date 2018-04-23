@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProjectInfo>
+    <Name>RT_SignalPriority_Integration</Name>
+    <LastWriteTime>2018-01-29T15:44:19.3821165Z</LastWriteTime>
+    <LastKnownProtectionLevel>EncryptSensitiveWithPassword</LastKnownProtectionLevel>
+    <Salt>i/vEkjDU</Salt>
+    <LastKnownProtectedHashedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAJ58mOZJwwEC+Y+oKgdJ+TAAAAAACAAAAAAADZgAAwAAAABAAAAD8nK71GyUWSp7Nm2L0KkSUAAAAAASAAACgAAAAEAAAAOJ8t/49ul8VDg7TZWxXNkooAAAAI8wM8TmvNlCoMD8enJ9eWDGdDf1/ZRHcgHGul9aMd2aw0cWqyHQ8vBQAAADbK8LbgxiDo07cebz19c4hXUATig==</LastKnownProtectedHashedPassword>
+  </ProjectInfo>
+  <LastBuildInfos>
+    <ProjectBuildItemInfo>
+      <Name>Master.dtsx</Name>
+      <LastWriteTime>2017-12-15T12:33:15.6426048Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithPassword</LastKnownProtectionLevel>
+      <Salt>rO3c+bcU</Salt>
+      <LastKnownProtectedHashedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAJ58mOZJwwEC+Y+oKgdJ+TAAAAAACAAAAAAADZgAAwAAAABAAAADuQaL43Unr8bY0s8zM4dx3AAAAAASAAACgAAAAEAAAAItZ5IUFJ7vXKzZdmW/Ja7IoAAAAEIvrwUcHTw9sNm0K4ZuPAPO6ynEyQKWbK83fMTP11ZTnITJ12NaDZRQAAABOpeaG1aPrEFAxi15a7JQrAf419g==</LastKnownProtectedHashedPassword>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>RT_SignalPriority_ActivationPoint (TDR).dtsx</Name>
+      <LastWriteTime>2017-12-15T12:33:15.7616167Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithPassword</LastKnownProtectionLevel>
+      <Salt>EwGV8P6A</Salt>
+      <LastKnownProtectedHashedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAJ58mOZJwwEC+Y+oKgdJ+TAAAAAACAAAAAAADZgAAwAAAABAAAABUiQ2G1D2/HWs6SsEeRDTMAAAAAASAAACgAAAAEAAAAHWI0cTZMFdvVaNZvD7UyjsoAAAAuZog7e9MD9MSNLdTtfrRVNxPwhKUNGzRWv+8R4dOwS17TU70a16uphQAAADLNnwMXf/l8aLw9NOUnF6b6St+sQ==</LastKnownProtectedHashedPassword>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>RT_SignalPriority_Activation (Proxy).dtsx</Name>
+      <LastWriteTime>2018-01-29T15:44:19.3321115Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithPassword</LastKnownProtectionLevel>
+      <Salt>ETXB+zQ0</Salt>
+      <LastKnownProtectedHashedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAJ58mOZJwwEC+Y+oKgdJ+TAAAAAACAAAAAAADZgAAwAAAABAAAACGs3eYuS3GTKmKl/sj0peVAAAAAASAAACgAAAAEAAAABkzw3c/+n4eRlYss3PRov8oAAAAsN1MMFCtNNeRVnEQQdzGAgoBSHkUa89EKuSKnVIkK/dU4EjD9Lk4RBQAAADH/MXhoJ5sjHy8xid9wi8oqxdkrA==</LastKnownProtectedHashedPassword>
+    </ProjectBuildItemInfo>
+  </LastBuildInfos>
+</BuildLog>

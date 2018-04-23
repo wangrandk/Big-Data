@@ -1,0 +1,2791 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/2/2012 2:01:58 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DATAWAREHOUSE01"
+  DTS:CreatorName="TRAFIK\ak"
+  DTS:DTSID="{950AC0E6-1770-4734-A6B4-FC9CB9676368}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3008.28"
+  DTS:LocaleID="1030"
+  DTS:ObjectName="RT_SignalPriority_Activation  Proxy"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="89"
+  DTS:VersionGUID="{A7563E79-9840-48A1-AEE5-3A83ACF17291}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Flat File Connection Manager]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{28FB72AF-77A3-4B38-80EA-70C4EBB7DEC3}"
+      DTS:ObjectName="Flat File Connection Manager">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::DataFilePath]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1030"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\biudv03\TempData\RT\RT_SignalPriority\proxy-data-20160421.log">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:DataType="7"
+              DTS:TextQualified="True"
+              DTS:ObjectName="LogTimeLocal"
+              DTS:DTSID="{085FDE43-BF11-4947-B36E-92B66F61F33D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="3"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DirectionText"
+              DTS:DTSID="{D82DC976-F607-4AAE-87CD-EE0D686CB79E}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="20"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Username"
+              DTS:DTSID="{CDD0114D-7943-4392-8D87-21197D39432D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="100"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SourceEndpoint"
+              DTS:DTSID="{033B4B21-6B0C-4881-87D1-25BD23C0B8E3}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="1000"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SignalData"
+              DTS:DTSID="{6287579C-4211-4ACB-B25D-208B9700DF20}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{99A4C82B-422A-49B4-9EF9-BFC46A381944}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="CleanupDataFileName">
+      <DTS:VariableValue
+        DTS:DataType="8">proxy-data-20160421.log</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9FFE9A8B-8EC4-407F-95E6-36227463A452}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::TempPath] + &quot;\\&quot; + @[User::CleanupDataFileName]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="CleanupDataFilePath">
+      <DTS:VariableValue
+        DTS:DataType="8">\\biudv03\TempData\RT\RT_SignalPriority\proxy-data-20160421.log</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E6929BCE-69B3-4974-A5AD-7E3754717D1E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DataFileName">
+      <DTS:VariableValue
+        DTS:DataType="8">proxy-data-20160421.log</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{11775752-DCF9-4EA3-9695-7A0ECD6281CA}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::TempPath] + &quot;\\&quot; + @[User::DataFileName]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DataFilePath">
+      <DTS:VariableValue
+        DTS:DataType="8">\\biudv03\TempData\RT\RT_SignalPriority\proxy-data-20160421.log</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4B5E5506-12AB-4528-807B-01AEF0EBA8A8}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ErrorCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{65CA8253-0812-4A11-A5CB-8F654C268072}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::AppDirectoryPath] + &quot;\\Import_Activation_Proxy.ps1 -Username '&quot; + @[$Project::ProxyLogUsername] + &quot;' -Password '&quot; + @[$Project::ProxyLogPassword] + &quot;' -UncPath '&quot; + @[$Project::ProxyLogUncPath] + &quot;' -SourcePath '&quot; + @[$Project::ProxyLogSourcePath] + &quot;' -DestPath '&quot; + @[$Project::TempPath] + &quot;' &gt;&gt; '&quot; +  @[User::LogFilePath] + &quot;' 2&gt;&amp;1&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ImportCommand">
+      <DTS:VariableValue
+        DTS:DataType="8">\\biudv03\AppFiles\RT\RT_SignalPriority\Import_Activation_Proxy.ps1 -Username 'SIGNALCONTROL01\sk-dw-reader' -Password 'LysiLygt1' -UncPath '\\129.142.32.142\Logs' -SourcePath '\\129.142.32.142\Logs\Signal Priority Proxy' -DestPath '\\biudv03\TempData\RT\RT_SignalPriority' &gt;&gt; '\\biudv03\Logs\RT\RT_SignalPriority\Import_Activation_Proxy-20180129-164507.log' 2&gt;&amp;1</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4E911544-C35C-4E0D-A431-E9D8023FB67F}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;Import_Activation_Proxy-&quot; + (DT_WSTR, 4)YEAR(@[System::ContainerStartTime]) + RIGHT(&quot;0&quot; + (DT_WSTR, 2)MONTH(@[System::ContainerStartTime]), 2) + RIGHT(&quot;0&quot; + (DT_WSTR, 2)DAY(@[System::ContainerStartTime]), 2) + &quot;-&quot; + RIGHT(&quot;0&quot; + (DT_WSTR, 2)DATEPART(&quot;hour&quot;, @[System::ContainerStartTime]), 2) + RIGHT(&quot;0&quot; + (DT_WSTR, 2)DATEPART(&quot;minute&quot;, @[System::ContainerStartTime]), 2)  + RIGHT(&quot;0&quot; + (DT_WSTR, 2)DATEPART(&quot;second&quot;, @[System::ContainerStartTime]), 2) + &quot;.log&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="LogFileName">
+      <DTS:VariableValue
+        DTS:DataType="8">Import_Activation_Proxy-20180129-164507.log</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FAF1A821-7E9C-4B25-9372-BDED30940EBF}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::LogDirectoryPath] + &quot;\\&quot; + @[User::LogFileName]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="LogFilePath">
+      <DTS:VariableValue
+        DTS:DataType="8">\\biudv03\Logs\RT\RT_SignalPriority\Import_Activation_Proxy-20180129-164507.log</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{06C063B0-5DB4-4CC4-AA57-7A737902C235}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SourceSystemCode"
+      DTS:ReadOnly="True">
+      <DTS:VariableValue
+        DTS:DataType="8">PROXY</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Cleanup all but last"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{CFD507FC-230B-4446-AD09-BB72617310AF}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Cleanup all but last">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachFileEnumerator"
+        DTS:DTSID="{4F24D4C3-403B-45F6-A6AA-49E0ED54B17C}"
+        DTS:ObjectName="{4F24D4C3-403B-45F6-A6AA-49E0ED54B17C}">
+        <DTS:PropertyExpression
+          DTS:Name="Directory">@[$Project::TempPath]</DTS:PropertyExpression>
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="\\biudv03\TempData\RT\RT_SignalPriority" />
+            <FEFEProperty
+              FileSpec="*.log" />
+            <FEFEProperty
+              FileNameRetrievalType="1" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Cleanup all but last\Empty LogFilePath"
+          DTS:CreationName="Microsoft.FileSystemTask"
+          DTS:Description="File System Task"
+          DTS:Disabled="True"
+          DTS:DTSID="{33ACF5AD-D971-4582-9C29-E084837B5C2B}"
+          DTS:ExecutableType="Microsoft.FileSystemTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Empty LogFilePath"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Disable">@[User::CleanupDataFileName] == @[User::DataFileName]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOperationType="DeleteFile"
+              TaskSourcePath="User::CleanupDataFilePath"
+              TaskIsSourceVariable="True" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{3E5CFFDC-B7B7-418D-A139-2E26E929D77D}"
+          DTS:ObjectName="{3E5CFFDC-B7B7-418D-A139-2E26E929D77D}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::CleanupDataFileName" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Ensure Log Path"
+      DTS:CreationName="Microsoft.FileSystemTask"
+      DTS:Description="File System Task"
+      DTS:DTSID="{9047A39D-F557-4B8C-A23B-DD0A17AFDC1A}"
+      DTS:ExecutableType="Microsoft.FileSystemTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Ensure Log Path"
+      DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <FileSystemData
+          TaskOperationType="CreateDirectory"
+          TaskOverwriteDestFile="True"
+          TaskSourcePath="$Project::LogDirectoryPath"
+          TaskIsSourceVariable="True" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Ensure Temp Path"
+      DTS:CreationName="Microsoft.FileSystemTask"
+      DTS:Description="File System Task"
+      DTS:DTSID="{D9916BA5-A44F-4B4F-A74C-F0CFC03A98EF}"
+      DTS:ExecutableType="Microsoft.FileSystemTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Ensure Temp Path"
+      DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <FileSystemData
+          TaskOperationType="CreateDirectory"
+          TaskOverwriteDestFile="True"
+          TaskSourcePath="$Project::TempPath"
+          TaskIsSourceVariable="True" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Foreach Loop Container"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{EDA132C5-2AC6-43FD-B4C3-69D250E3C88A}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach Loop Container">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachFileEnumerator"
+        DTS:DTSID="{C7F61585-3EFA-45E5-BB66-DEE8DDA0CB8C}"
+        DTS:ObjectName="{C7F61585-3EFA-45E5-BB66-DEE8DDA0CB8C}">
+        <DTS:PropertyExpression
+          DTS:Name="Directory">@[$Project::TempPath]</DTS:PropertyExpression>
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="\\biudv03\TempData\RT\RT_SignalPriority" />
+            <FEFEProperty
+              FileSpec="proxy-data-*.log" />
+            <FEFEProperty
+              FileNameRetrievalType="1" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Data Flow Task"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{997BA195-7F3B-433F-9CFF-8F20B4F017DC}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Data Flow Task"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Foreach Loop Container\Data Flow Task\Add Metadata"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Add Metadata"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container\Data Flow Task\Add Metadata.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Add Metadata.Inputs[Derived Column Input].Columns[SourceEndpoint]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="SourceEndpoint"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[SourceEndpoint]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Add Metadata.Inputs[Derived Column Input].Columns[DirectionText]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="3"
+                          cachedName="DirectionText"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[DirectionText]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\Data Flow Task\Add Metadata.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Foreach Loop Container\Data Flow Task\Add Metadata.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Add Metadata.Outputs[Derived Column Output].Columns[SourceSystemCode]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="20"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Add Metadata.Outputs[Derived Column Output].Columns[SourceSystemCode]"
+                          name="SourceSystemCode"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,20,1252)(#{Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[DirectionText]} == "out" ? "PROXY" : (#{Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[SourceEndpoint]} == "IhmSignalController" ? "TDR" : (#{Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[SourceEndpoint]} == "TrafficLightPriorityService" ? "RPS" : "")))</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,20,1252)(DirectionText == "out" ? "PROXY" : (SourceEndpoint == "IhmSignalController" ? "TDR" : (SourceEndpoint == "TrafficLightPriorityService" ? "RPS" : "")))</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Add Metadata.Outputs[Derived Column Output].Columns[DataFlowDirection]"
+                          dataType="ui1"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Add Metadata.Outputs[Derived Column Output].Columns[DataFlowDirection]"
+                          name="DataFlowDirection"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_UI1)(#{Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[DirectionText]} == "in" ? 1 : (#{Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[DirectionText]} == "out" ? 2 : 0))</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_UI1)(DirectionText == "in" ? 1 : (DirectionText == "out" ? 2 : 0))</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container\Data Flow Task\Add Metadata.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Foreach Loop Container\Data Flow Task\Add Metadata.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Add Metadata.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Add Metadata.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Add Metadata.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Add Metadata.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination"
+                  componentClassID="Microsoft.ManagedComponentHost"
+                  contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+                  description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+                  name="ADO NET Destination"
+                  usesDispositions="true"
+                  version="2">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="The Destination database table name."
+                      expressionType="Notify"
+                      name="TableOrViewName"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"staging"."RT_SignalPriority_Activation"</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                      expressionType="Notify"
+                      name="BatchSize">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                      expressionType="Notify"
+                      name="CommandTimeout">30</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                      expressionType="Notify"
+                      name="UseBulkInsertWhenPossible">true</property>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Connections[IDbConnection]"
+                      connectionManagerID="{6A8861C6-38CD-44C7-BC4C-2754EF7688D1}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[DW_DSA]"
+                      description="Managed connection manager"
+                      name="IDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input]"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="ADO NET Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Username]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="20"
+                          cachedName="Username"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Username]"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[Username]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[SourceSystemCode]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="20"
+                          cachedName="SourceSystemCode"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[SourceSystemCode]"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Add Metadata.Outputs[Derived Column Output].Columns[SourceSystemCode]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[DataFlowDirection]"
+                          cachedDataType="ui1"
+                          cachedName="DataFlowDirection"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DataFlowDirection]"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Add Metadata.Outputs[Derived Column Output].Columns[DataFlowDirection]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[SourceSystemEntryRef]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="20"
+                          cachedName="SourceSystemEntryRef"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[SourceSystemEntryRef]"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[SourceSystemEntryRef]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[LogTime]"
+                          cachedDataType="dbTimeStampOffset"
+                          cachedName="LogTime"
+                          cachedScale="4"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[LogTime]"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[LogTime]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[ActivationTime]"
+                          cachedDataType="dbTimeStampOffset"
+                          cachedName="ActivationTime"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[ActivationTime]"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[ActivationTime]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[LightId]"
+                          cachedDataType="i4"
+                          cachedName="LightId"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[LightId]"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[LightId]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[RelayNumber]"
+                          cachedDataType="i4"
+                          cachedName="RelayNumber"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[RelayNumber]"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[RelayNumber]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Type]"
+                          cachedDataType="ui1"
+                          cachedName="Type"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Type]"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[Type]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[LineDesignation]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="8"
+                          cachedName="LineDesignation"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[LineDesignation]"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[LineDesignation]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[JourneyNumber]"
+                          cachedDataType="i4"
+                          cachedName="JourneyNumber"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[JourneyNumber]"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[JourneyNumber]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[VehicleNumber]"
+                          cachedDataType="i4"
+                          cachedName="VehicleNumber"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[VehicleNumber]"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[VehicleNumber]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[DelayMinutes]"
+                          cachedDataType="i4"
+                          cachedName="DelayMinutes"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DelayMinutes]"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[DelayMinutes]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Distance]"
+                          cachedDataType="r4"
+                          cachedName="Distance"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Distance]"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[Distance]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Speed]"
+                          cachedDataType="r4"
+                          cachedName="Speed"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Speed]"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[Speed]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[ExpectedTime]"
+                          cachedDataType="dbTimeStampOffset"
+                          cachedName="ExpectedTime"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[ExpectedTime]"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[ExpectedTime]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Id]"
+                          dataType="i4"
+                          name="Id" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[SourceSystemCode]"
+                          dataType="wstr"
+                          length="20"
+                          name="SourceSystemCode" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[SourceSystemEntryRef]"
+                          dataType="wstr"
+                          length="20"
+                          name="SourceSystemEntryRef" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[LogTime]"
+                          dataType="dbTimeStampOffset"
+                          name="LogTime" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DataFlowDirection]"
+                          dataType="ui1"
+                          name="DataFlowDirection" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Username]"
+                          dataType="wstr"
+                          length="20"
+                          name="Username" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[ActivationTime]"
+                          dataType="dbTimeStampOffset"
+                          name="ActivationTime" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[LightId]"
+                          dataType="i4"
+                          name="LightId" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[RelayNumber]"
+                          dataType="i4"
+                          name="RelayNumber" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Type]"
+                          dataType="ui1"
+                          name="Type" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[LineDesignation]"
+                          dataType="wstr"
+                          length="8"
+                          name="LineDesignation" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[JourneyNumber]"
+                          dataType="i4"
+                          name="JourneyNumber" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[VehicleNumber]"
+                          dataType="i4"
+                          name="VehicleNumber" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DelayMinutes]"
+                          dataType="i4"
+                          name="DelayMinutes" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Distance]"
+                          dataType="r4"
+                          name="Distance" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Speed]"
+                          dataType="r4"
+                          name="Speed" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[ExpectedTime]"
+                          dataType="dbTimeStampOffset"
+                          name="ExpectedTime" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="ADO NET Destination Error Output"
+                      synchronousInputId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container\Data Flow Task\Flat File Source"
+                  componentClassID="Microsoft.FlatFileSource"
+                  contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Flat File Source"
+                  localeId="1030"
+                  name="Flat File Source"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether zero-length columns are treated as null."
+                      name="RetainNulls">true</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                      name="FileNameColumnName"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager]"
+                      connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Output]"
+                      name="Flat File Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[DirectionText]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[DirectionText]"
+                          length="3"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[DirectionText]"
+                          name="DirectionText"
+                          truncationRowDisposition="RedirectRow">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[Username]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Username]"
+                          length="20"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[Username]"
+                          name="Username"
+                          truncationRowDisposition="RedirectRow">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[SourceEndpoint]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[SourceEndpoint]"
+                          length="100"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[SourceEndpoint]"
+                          name="SourceEndpoint"
+                          truncationRowDisposition="RedirectRow">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[SignalData]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[SignalData]"
+                          length="1000"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[SignalData]"
+                          name="SignalData"
+                          truncationRowDisposition="RedirectRow">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[LogTimeLocal]"
+                          dataType="date"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[LogTimeLocal]"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[LogTimeLocal]"
+                          name="LogTimeLocal"
+                          truncationRowDisposition="RedirectRow">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[DirectionText]"
+                          codePage="1252"
+                          dataType="str"
+                          length="3"
+                          name="DirectionText" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Username]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="Username" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[SourceEndpoint]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="SourceEndpoint" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[SignalData]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1000"
+                          name="SignalData" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[LogTimeLocal]"
+                          dataType="date"
+                          name="LogTimeLocal" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Error Output]"
+                      isErrorOut="true"
+                      name="Flat File Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          codePage="1252"
+                          dataType="text"
+                          description="Flat File Source Error Output Column"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          name="Flat File Source Error Output Column" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData"
+                  componentClassID="Microsoft.ManagedComponentHost"
+                  contactInfo="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum.;Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;8"
+                  description="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum."
+                  name="Parse SignalData"
+                  version="10">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Stores the source code of the component"
+                      isArray="true"
+                      name="SourceCode"
+                      state="cdata">
+                      <arrayElements
+                        arrayElementCount="30">
+                        <arrayElement
+                          dataType="System.String"><![CDATA[main.cs]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[using System;
+using System.Globalization;
+using System.Text.RegularExpressions;
+
+[Microsoft.SqlServer.Dts.Pipeline.SSISScriptComponentEntryPointAttribute]
+public class ScriptMain : UserComponent
+{
+    private CultureInfo culture;
+    private CultureInfo floatCulture;
+    private string fileDate;
+    private int rowNumber;
+
+    public override void PreExecute()
+    {
+        base.PreExecute();
+        culture = CultureInfo.InvariantCulture;
+        floatCulture = CultureInfo.GetCultureInfo("da-DK");
+        fileDate = Regex.Match(Variables.DataFileName, @"\d{8}").Value;
+    }
+
+    public override void Input0_ProcessInputRow(Input0Buffer Row)
+    {
+        Row.LogTime = DateTime.SpecifyKind(Row.LogTimeLocal, DateTimeKind.Local);
+
+        var signalData = Row.SignalData.Split('|');
+
+        if (signalData.Length == 12)
+        {
+            var activationTime = DateTime.Parse(signalData[0], culture);
+            // Log Format $"{Time:s}|{Action.ToString()}|{LightId}|{DirectionId}|{BusLine}|{JourneyNo}|{BusNo}|{Speed}|{Distance}|{Delay}|{ExpectedTime:s}|{Destination}";
+            Row.ActivationTime = DateTime.SpecifyKind(activationTime, DateTimeKind.Utc).ToLocalTime();
+
+            Row.SourceSystemEntryRef = fileDate + ":" + rowNumber.ToString();
+
+            switch (signalData[1])
+            {
+                case "REQ_NOM":
+                    Row.Type = 1;
+                    break;
+                case "CAN_NOM":
+                    Row.Type = 2;
+                    break;
+            }
+
+            Row.LightId = int.Parse(signalData[2]);
+            Row.RelayNumber = int.Parse(signalData[3]);
+            Row.LineDesignation = signalData[4];
+            Row.JourneyNumber = int.Parse(signalData[5]);
+            Row.VehicleNumber = int.Parse(signalData[6]);
+
+            if (!string.IsNullOrEmpty(signalData[7]))
+                Row.Speed = float.Parse(signalData[7], floatCulture);
+            else
+                Row.Speed_IsNull = true;
+
+            if (!string.IsNullOrEmpty(signalData[8]))
+                Row.Distance = float.Parse(signalData[8], floatCulture);
+            else
+                Row.Distance_IsNull = true;
+
+            if (!string.IsNullOrEmpty(signalData[9]))
+                Row.DelayMinutes = int.Parse(signalData[9]);
+            else
+                Row.DelayMinutes_IsNull = true;
+
+            if (!string.IsNullOrEmpty(signalData[10]))
+                Row.ExpectedTime = DateTime.SpecifyKind(DateTime.Parse(signalData[10], culture), DateTimeKind.Utc).ToLocalTime();
+            else
+                Row.ExpectedTime_IsNull = true;
+
+            rowNumber++;
+        }
+    }
+
+}
+]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[Properties\Resources.resx]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[SC_87d8d43b5e9b420fb4977ee41ebdca1c.csproj]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{b537f3e9-852c-4314-bdfe-4162cb4fa302}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SC_87d8d43b5e9b420fb4977ee41ebdca1c</RootNamespace>
+    <AssemblyName>SC_87d8d43b5e9b420fb4977ee41ebdca1c</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.TxScript, Version=13.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSRuntimeWrap, Version=13.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSPipelineWrap, Version=13.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.PipelineHost, Version=13.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Compile Include="main.cs" />
+    <Compile Include="BufferWrapper.cs" />
+    <Compile Include="ComponentWrapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <!-- Include the build rules for a C# project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- This section defines VSTA properties that describe the host-changable project properties. -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="ScriptComponent" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" DebugInfoExeName="" DebugInfoCommandLine="" DebugInfoWorkingDir="" IconImageList="" />
+        <Host Name="ScriptComponent" GeneratedNamespace="SC_87d8d43b5e9b420fb4977ee41ebdca1c" IconIndex="0"></Host>
+        <ProjectClient>
+          <HostIdentifier>SSIS_SC130</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[BufferWrapper.cs]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services buffer wrappers
+*  This module defines classes for accessing data flow buffers
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+
+public class Input0Buffer: ScriptBuffer
+
+{
+    public Input0Buffer(PipelineBuffer Buffer, int[] BufferColumnIndexes, OutputNameMap OutputMap)
+        : base(Buffer, BufferColumnIndexes, OutputMap)
+    {
+    }
+
+    public DateTime LogTimeLocal
+    {
+        get
+        {
+            return Buffer.GetDateTime(BufferColumnIndexes[0]);
+        }
+    }
+    public bool LogTimeLocal_IsNull
+    {
+        get
+        {
+            return IsNull(0);
+        }
+    }
+
+    public String SignalData
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[1]);
+        }
+    }
+    public bool SignalData_IsNull
+    {
+        get
+        {
+            return IsNull(1);
+        }
+    }
+
+    public String DirectionText
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[2]);
+        }
+    }
+    public bool DirectionText_IsNull
+    {
+        get
+        {
+            return IsNull(2);
+        }
+    }
+
+    public String Username
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[3]);
+        }
+    }
+    public bool Username_IsNull
+    {
+        get
+        {
+            return IsNull(3);
+        }
+    }
+
+    public String SourceEndpoint
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[4]);
+        }
+    }
+    public bool SourceEndpoint_IsNull
+    {
+        get
+        {
+            return IsNull(4);
+        }
+    }
+
+    public String SourceSystemEntryRef
+    {
+        set
+        {
+            this[5] = value;
+        }
+    }
+    public bool SourceSystemEntryRef_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(5);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public DateTimeOffset LogTime
+    {
+        set
+        {
+            this[6] = value;
+        }
+    }
+    public bool LogTime_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(6);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public DateTimeOffset ActivationTime
+    {
+        set
+        {
+            this[7] = value;
+        }
+    }
+    public bool ActivationTime_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(7);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public Int32 LightId
+    {
+        set
+        {
+            this[8] = value;
+        }
+    }
+    public bool LightId_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(8);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public Int32 RelayNumber
+    {
+        set
+        {
+            this[9] = value;
+        }
+    }
+    public bool RelayNumber_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(9);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public Byte Type
+    {
+        set
+        {
+            this[10] = value;
+        }
+    }
+    public bool Type_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(10);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String LineDesignation
+    {
+        set
+        {
+            this[11] = value;
+        }
+    }
+    public bool LineDesignation_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(11);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public Int32 JourneyNumber
+    {
+        set
+        {
+            this[12] = value;
+        }
+    }
+    public bool JourneyNumber_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(12);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public Int32 VehicleNumber
+    {
+        set
+        {
+            this[13] = value;
+        }
+    }
+    public bool VehicleNumber_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(13);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public Int32 DelayMinutes
+    {
+        set
+        {
+            this[14] = value;
+        }
+    }
+    public bool DelayMinutes_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(14);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public Single Distance
+    {
+        set
+        {
+            this[15] = value;
+        }
+    }
+    public bool Distance_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(15);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public Single Speed
+    {
+        set
+        {
+            this[16] = value;
+        }
+    }
+    public bool Speed_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(16);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public DateTimeOffset ExpectedTime
+    {
+        set
+        {
+            this[17] = value;
+        }
+    }
+    public bool ExpectedTime_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(17);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    new public bool NextRow()
+    {
+        return base.NextRow();
+    }
+
+    new public bool EndOfRowset()
+    {
+        return base.EndOfRowset();
+    }
+
+}
+]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[Properties\Settings.Designer.cs]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_87d8d43b5e9b420fb4977ee41ebdca1c.Properties.Settings.get_Default():SC_87d8d43b5e9b420fb4977ee41ebdca1c.Properties.Sett" +
+    "ings")]
+
+namespace SC_87d8d43b5e9b420fb4977ee41ebdca1c.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[ComponentWrapper.cs]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services component wrapper
+*  This module defines the base class for your component
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+
+public class UserComponent: ScriptComponent
+{
+    public Connections Connections;
+    public Variables Variables;
+    public UserComponent()
+    {
+        Connections = new Connections(this);
+        Variables = new Variables(this);
+    }
+
+    public override void ProcessInput(int InputID, string InputName, PipelineBuffer Buffer, OutputNameMap OutputMap)
+    {
+
+        if (InputName.Equals(@"Input 0", StringComparison.Ordinal))
+        {
+            Input0_ProcessInput(new Input0Buffer(Buffer, GetColumnIndexes(InputID), OutputMap));
+        }
+
+    }
+
+    public virtual void Input0_ProcessInput(Input0Buffer Buffer)
+    {
+        while (Buffer.NextRow())
+        {
+            Input0_ProcessInputRow(Buffer);
+        }
+    }
+
+    public virtual void Input0_ProcessInputRow(Input0Buffer Row)
+    {
+    }
+
+}
+
+public class Connections
+{
+    ScriptComponent ParentComponent;
+
+    public Connections(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+}
+
+public class Variables
+{
+    ScriptComponent ParentComponent;
+
+    public Variables(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+    public String DataFileName
+    {
+        get
+        {
+            return (String)(ParentComponent.ReadOnlyVariables["DataFileName"].GetValueWithContext(ScriptComponent.EvaluatorContext));
+        }
+    }
+
+}
+]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[Project]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[UTF16LE]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
+	<msb:PropertyGroup>
+		<msb:Language>msBuild</msb:Language>
+		<msb:CodeName>SC_87d8d43b5e9b420fb4977ee41ebdca1c</msb:CodeName>
+		<msb:DisplayName>SC_87d8d43b5e9b420fb4977ee41ebdca1c</msb:DisplayName>
+		<msb:ProjectId>{4769B185-5E96-4F14-AD32-F23D49C3B08D}</msb:ProjectId>
+	</msb:PropertyGroup>
+	<msb:ItemGroup>
+		<msb:Project Include="SC_87d8d43b5e9b420fb4977ee41ebdca1c.csproj"/>
+		<msb:File Include="Properties\Settings.settings"/>
+		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Resources.resx"/>
+		<msb:File Include="Properties\Resources.Designer.cs"/>
+		<msb:File Include="BufferWrapper.cs"/>
+		<msb:File Include="main.cs"/>
+		<msb:File Include="Properties\Settings.Designer.cs"/>
+		<msb:File Include="ComponentWrapper.cs"/>
+	</msb:ItemGroup>
+</c:Project>]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[Properties\AssemblyInfo.cs]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("SC_87d8d43b5e9b420fb4977ee41ebdca1c")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("CM02")]
+[assembly: AssemblyProduct("SC_87d8d43b5e9b420fb4977ee41ebdca1c")]
+[assembly: AssemblyCopyright("Copyright @ CM02 2016")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.0.0")]
+]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[Properties\Settings.settings]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[Properties\Resources.Designer.cs]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_87d8d43b5e9b420fb4977ee41ebdca1c.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
+    "rceManager")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_87d8d43b5e9b420fb4977ee41ebdca1c.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
+    "fo")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_87d8d43b5e9b420fb4977ee41ebdca1c.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
+    "):Void")]
+
+namespace SC_87d8d43b5e9b420fb4977ee41ebdca1c.Properties {
+    
+    
+    /// <summary>
+    ///   A strongly-typed resource class, for looking up localized strings, etc.
+    /// </summary>
+    // This class was auto-generated by the StronglyTypedResourceBuilder
+    // class via a tool like ResGen or Visual Studio.
+    // To add or remove a member, edit your .ResX file then rerun ResGen
+    // with the /str option, or rebuild your VS project.
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal class Resources {
+        
+        private static global::System.Resources.ResourceManager resourceMan;
+        
+        private static global::System.Globalization.CultureInfo resourceCulture;
+        
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources() {
+        }
+        
+        /// <summary>
+        ///   Returns the cached ResourceManager instance used by this class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if ((resourceMan == null)) {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SC_87d8d43b5e9b420fb4977ee41ebdca1c.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+        
+        /// <summary>
+        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   resource lookups using this strongly typed resource class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
+                return resourceCulture;
+            }
+            set {
+                resourceCulture = value;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                      </arrayElements>
+                    </property>
+                    <property
+                      dataType="System.String"
+                      description="Stores the binary representation of the component"
+                      isArray="true"
+                      name="BinaryCode"
+                      state="cdata">
+                      <arrayElements
+                        arrayElementCount="2">
+                        <arrayElement
+                          dataType="System.String"><![CDATA[SC_87d8d43b5e9b420fb4977ee41ebdca1c.dll]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAIn5bloAAAAAAAAAAOAAIiALATAAACIAAAAIAAAAAAAAWkAA
+AAAgAAAAYAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACgAAAAAgAAAAAAAAMAQIUAABAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAAhAAABPAAAAAGAAAFgEAAAAAAAAAAAAAAAAAAAA
+AAAAAIAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAYCAAAAAgAAAAIgAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAFgEAAAAYAAAAAYAAAAkAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAIAAAAACAAAAKgAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAAA8
+QAAAAAAAAEgAAAACAAUACCYAAEgZAAABAAAAAAAAAFA/AAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAABMwAwBCAAAAAAAAAAIoEAAACgIoEQAACn0BAAAEAnIBAABw
+KBIAAAp9AgAABAICewYAAARvMQAABnINAABwKBMAAApvFAAACn0DAAAEKgAAEzAFAK8BAAABAAAR
+AwNvBQAABhgoFQAACigWAAAKbxEAAAYDbwcAAAYXjSAAAAElFh98nW8XAAAKCgaOaR8MQHYBAAAG
+FpoCewEAAAQoGAAACgsDBxcoFQAACgwSAigZAAAKKBYAAApvEwAABgMCewMAAARyGQAAcAJ8BAAA
+BCgaAAAKKBsAAApvDwAABgYXmg0Jch0AAHAoHAAACi0PCXItAABwKBwAAAotCysQAxdvGQAABisH
+AxhvGQAABgMGGJooHQAACm8VAAAGAwYZmigdAAAKbxcAAAYDBhqabxsAAAYDBhuaKB0AAApvHQAA
+BgMGHJooHQAACm8fAAAGBh2aKB4AAAotFgMGHZoCewIAAAQoHwAACm8lAAAGKwcDF28mAAAGBh6a
+KB4AAAotFgMGHpoCewIAAAQoHwAACm8jAAAGKwcDF28kAAAGBh8JmigeAAAKLREDBh8JmigdAAAK
+byEAAAYrBwMXbyIAAAYGHwqaKB4AAAotKgMGHwqaAnsBAAAEKBgAAAoXKBUAAAoMEgIoGQAACigW
+AAAKbycAAAYrBwMXbygAAAYCAnsEAAAEF1h9BAAABCoeAigrAAAGKioCAwQFKCAAAAoqUgJ7IQAA
+CgJ7IgAAChaUbyMAAAoqIgIWKCQAAAoqUgJ7IQAACgJ7IgAACheUbyUAAAoqIgIXKCQAAAoqUgJ7
+IQAACgJ7IgAAChiUbyUAAAoqIgIYKCQAAAoqUgJ7IQAACgJ7IgAAChmUbyUAAAoqIgIZKCQAAAoq
+UgJ7IQAACgJ7IgAAChqUbyUAAAoqIgIaKCQAAAoqJgIbAygmAAAKKloDLAgCGygnAAAKKnI9AABw
+cygAAAp6OgIcA4wTAAABKCYAAAoqWgMsCAIcKCcAAAoqcj0AAHBzKAAACno6Ah0DjBMAAAEoJgAA
+CipaAywIAh0oJwAACipyPQAAcHMoAAAKejoCHgOMIwAAASgmAAAKKloDLAgCHignAAAKKnI9AABw
+cygAAAp6PgIfCQOMIwAAASgmAAAKKl4DLAkCHwkoJwAACipyPQAAcHMoAAAKej4CHwoDjCYAAAEo
+JgAACipeAywJAh8KKCcAAAoqcj0AAHBzKAAACnoqAh8LAygmAAAKKl4DLAkCHwsoJwAACipyPQAA
+cHMoAAAKej4CHwwDjCMAAAEoJgAACipeAywJAh8MKCcAAAoqcj0AAHBzKAAACno+Ah8NA4wjAAAB
+KCYAAAoqXgMsCQIfDSgnAAAKKnI9AABwcygAAAp6PgIfDgOMIwAAASgmAAAKKl4DLAkCHw4oJwAA
+CipyPQAAcHMoAAAKej4CHw8DjCQAAAEoJgAACipeAywJAh8PKCcAAAoqcj0AAHBzKAAACno+Ah8Q
+A4wkAAABKCYAAAoqXgMsCQIfECgnAAAKKnI9AABwcygAAAp6PgIfEQOMEwAAASgmAAAKKl4DLAkC
+HxEoJwAACipyPQAAcHMoAAAKeh4CKCkAAAoqHgIoKgAACip+AigrAAAKAgJzLwAABn0FAAAEAgJz
+MAAABn0GAAAEKpIEctoAAHAabywAAAosFQIFAgMoLQAACg4EcwQAAAZvLQAABipKKwcCA28uAAAG
+A28pAAAGLfEqBio6AiguAAAKAgN9BwAABCo6AiguAAAKAgN9CAAABCqWAnsIAAAEby8AAApy6gAA
+cG8wAAAKKDEAAApvMgAACnQhAAABKh4CKC4AAAoqrn4JAAAELR5yBAEAcNAHAAACKDMAAApvNAAA
+CnM1AAAKgAkAAAR+CQAABCoafgoAAAQqHgKACgAABCoafgsAAAQqHgIoNgAACiouczcAAAaACwAA
+BCoAAEJTSkIBAAEAAAAAAAwAAAB2NC4wLjMwMzE5AAAAAAUAbAAAAEQKAAAjfgAAsAoAALgKAAAj
+U3RyaW5ncwAAAABoFQAAeAEAACNVUwDgFgAAEAAAACNHVUlEAAAA8BYAAFgCAAAjQmxvYgAAAAAA
+AAACAAABVxWiAQkBAAAA+gEzABYAAAEAAAAuAAAACAAAAAsAAAA4AAAAJwAAADYAAAAQAAAAAQAA
+AAQAAAAoAAAAKQAAAAEAAAAFAAAAAQAAAAAAZQQBAAAAAAAGACADAAgGALQDAAgGAGwC7QcPAHQI
+AAAGAJkCoQYGAAMDoQYGAOQCoQYGAJsDoQYGAEADoQYGAFkDoQYGALACoQYGAMsCCwQKAHQDdAEG
+AOEGjAYGAEABRQYKAJcHdAEOAIgHdAEKAO0GdAEGAEcJRQYKAJ4JdAEGAEAJRQYGAE8C7QcGAKgH
+IAgSAB8CTwQSAIACTwQSAPgBdwYGADQCAAgSAIgKDgkSADgEDgkSAPABDgkGAKMARQYGACgHRQYG
+ADEERQYGAGsHRQYGADoARQYGAP0ARQYGALMGRQYGAN0DRQYGAM0GRQYWABEAuAcWAAEAuAdTADkK
+AAAWACIAuAcGAJkBRQYGANkARQYGAJIKoQYAAAAAQAAAAAAAAQABAAEAEABYBgAAEAABAAEAAQAQ
+AHsHAABBAAUABAABABAAgAkAAFEABQArAAEAEAAtCQAAVQAHAC8AAQAQAL4IAABVAAgAMAAAABAA
+JwiDCFUACQAyAAABEAD+CIMIaQALADYAAQDoAfwAAQDGAfwAAQAWAgABAQA/BwMBBgAtCQYBBgC+
+CAoBAQCOCQ4BAQCOCQ4BEQBMBhIBEQC2AfwAEQDJABYBUCAAAAAAxgDSAwYAAQCgIAAAAADGAGkK
+GgEBAFsiAAAAAIYY4AcGAAIAYyIAAAAAhhjgB38AAgBuIgAAAACGCD4EWwAFAIMiAAAAAIYIZAWn
+AAUAjCIAAAAAhghRAC0ABQChIgAAAACGCI0EpwAFAKoiAAAAAIYIEwotAAUAvyIAAAAAhggSBqcA
+BQDIIgAAAACGCB8BLQAFAN0iAAAAAIYI2wSnAAUA5iIAAAAAhgiuCS0ABQD7IgAAAACGCPgFpwAF
+AAQjAAAAAIYI8gMQAAUADiMAAAAAhghEBSABBgAlIwAAAACGCEkBJQEHADQjAAAAAIYIBwUgAQgA
+SyMAAAAAhghhASUBCQBaIwAAAACGCBoFIAEKAHEjAAAAAIYIjQABAAsAgCMAAAAAhgijBCABDACX
+IwAAAACGCEkHAQANAKcjAAAAAIYIsAUgAQ4AvyMAAAAAhgiVASsBDwDPIwAAAACGCDQFIAEQAOcj
+AAAAAIYIYwYQABEA8iMAAAAAhgh8BSABEgAKJAAAAACGCFkHAQATABokAAAAAIYIxwUgARQAMiQA
+AAAAhggtBwEAFQBCJAAAAACGCJcFIAEWAFokAAAAAIYIyAgBABcAaiQAAAAAhgjgBSABGACCJAAA
+AACGCLwAMAEZAJIkAAAAAIYIxwQgARoAqiQAAAAAhgiZADABGwC6JAAAAACGCLYEIAEcANIkAAAA
+AIYILAElAR0A4iQAAAAAhgjvBCABHgD6JAAAAACGAIAKpwAfAAIlAAAAAIYAVgmnAB8ACiUAAAAA
+hhjgBwYAHwAqJQAAAADGAAYKNQEfAE8lAAAAAMYB/wkaASMAYiUAAAAAxgFpChoBJABkJQAAAACG
+GOAHPwElAHMlAAAAAIYY4Ac/ASYAgiUAAAAAhggEAS0AJwCoJQAAAACDGOAHBgAnALAlAAAAAJMI
+pAdFAScA3CUAAAAAkwieARsAJwDjJQAAAACTCKoBSgEnAOslAAAAAJYIdAlQASgA8iUAAAAAhhjg
+BwYAKAD6JQAAAACRGOYHVQEoAAAAAQCECgAAAQCdBwAAAgDZCAAAAwD7BgAAAQDsAwAAAQDsAwAA
+AQDsAwAAAQDsAwAAAQDsAwAAAQDsAwAAAQDsAwAAAQDsAwAAAQDsAwAAAQDsAwAAAQDsAwAAAQDs
+AwAAAQDsAwAAAQDsAwAAAQDsAwAAAQDsAwAAAQDsAwAAAQDsAwAAAQDsAwAAAQDsAwAAAQDsAwAA
+AQDsAwAAAQDsAwAAAQDsAwAAAQDsAwAAAQDsAwAAAQBJAAAAAgAVAQAAAwCdBwAABAD7BgAAAQCd
+BwAAAQCECgAAAQCkCQAAAQCkCQAAAQDsAwkA4AcBABEA4AcGABkA4AcKACkA4AcQADEA4AcQADkA
+4AcQAEEA4AcQAEkA4AcQAFEA4AcQAFkA4AcQAGEA4AcQAGkA4AcGALEA4AcGAMkA4AcVANkA4AcG
+AKEA0gMGAHEA0wEbAHEA3gYgAOEAOAQmAPEA4gMtAHkAsAA7AJkAYglEAAkBbglLAHkAEAJSAHkA
+VQFbABkBJQQtAAkBOQlgAAkBmwpnABkBEAJtAAkBpwpyACEBEAJ3AIEA4Ad/AIEAnQeJAIEA2QiN
+AIkAPQGRAIEAJAaXAIkALgScAIEAPAahAIEAKwYBACkB4AcQAIEAgAqnAIEAVgmnAKEA4AcGAAkB
+BwmrAKEA7QizAKkA4AcGAKEAsgi5AEEBMwa/AKEAVArGAEkBJQrMAGEB6wDTAGEBjgrcALkA4Afi
+ANEA4AcGAC4ACwCGAS4AEwCPAS4AGwCuAS4AIwC3AS4AKwDgAS4AMwDgAS4AOwDmAS4AQwC3AS4A
+SwDwAS4AUwDgAS4AWwALAkMAYwBTAuMAawBTAmEBewBTAskEcwCuAekEcwCuATEAAwABAAYAJQAH
+ACYACAAoAAAAQgRZAQAAaAVeAQAAVQBiAQAAkQReAQAAFwpiAQAAFgZeAQAAIwFiAQAA3wReAQAA
+sgliAQAA/AVeAQAA9gNiAQAASAVeAQAATQFmAQAACwVeAQAAZQFmAQAAHgVeAQAAkQBrAQAApwRe
+AQAATQdrAQAAtAVeAQAAmQFvAQAAOAVeAQAAZwZiAQAAgAVeAQAAXQdrAQAAywVeAQAAMQdrAQAA
+mwVeAQAAzAhrAQAA5AVeAQAAwABzAQAAywReAQAAnQBzAQAAugReAQAAMAFmAQAA8wReAQAACAFi
+AQAAqAd3AQAA4AF8AQAAeAmBAQIABQADAAIABgAFAAIABwAHAAIACAAJAAIACQALAAIACgANAAIA
+CwAPAAIADAARAAIADQATAAIADgAVAAEADwAXAAEAEAAZAAEAEQAbAAEAEgAdAAEAEwAfAAEAFAAh
+AAEAFQAjAAEAFgAlAAEAFwAnAAEAGAApAAEAGQArAAEAGgAtAAEAGwAvAAEAHAAxAAEAHQAzAAEA
+HgA1AAEAHwA3AAEAIAA5AAEAIQA7AAEAIgA9AAEAIwA/AAEAJABBAAEAJQBDAAEAJgBFAAEAJwBH
+AAEAKABJAAIAMQBLAAIAMwBNAAIANABPAAEANQBPAAIANgBRAASAAAABAAAAAAAAAAAAAAAAAGkA
+AAAEAAAAAAAAAAAAAADqAGAAAAAAAA0AAAAAAAAAAAAAAPMAwQkAAAAADQAAAAAAAAAAAAAA8wDe
+CQAAAAAEAAAAAAAAAAAAAADqAEUGAAAAAA0AAAAAAAAAAAAAAPMABQcAAAAAAAAAAAEAAAAxCAAA
+AAAAAABJRFRTVmFyaWFibGUxMDAASURUU1ZhcmlhYmxlczEwMABJRFRTRXZhbHVhdG9yQ29udGV4
+dDEwMABJbnQzMgA8TW9kdWxlPgBJbnB1dElEAGdldF9TaWduYWxEYXRhAG1zY29ybGliAFNDXzg3
+ZDhkNDNiNWU5YjQyMGZiNDk3N2VlNDFlYmRjYTFjAHNldF9MaWdodElkAHNldF9TcGVlZABEYXRl
+VGltZUtpbmQAU3BlY2lmeUtpbmQAc2V0X0Rpc3RhbmNlAGRlZmF1bHRJbnN0YW5jZQBSdW50aW1l
+VHlwZUhhbmRsZQBHZXRUeXBlRnJvbUhhbmRsZQBTaW5nbGUAZ2V0X0RhdGFGaWxlTmFtZQBJbnB1
+dE5hbWUAZ2V0X1VzZXJuYW1lAHNldF9FeHBlY3RlZFRpbWUAR2V0RGF0ZVRpbWUAc2V0X0xvZ1Rp
+bWUAVG9Mb2NhbFRpbWUAc2V0X0FjdGl2YXRpb25UaW1lAE1pY3Jvc29mdC5TcWxTZXJ2ZXIuRHRz
+LlBpcGVsaW5lAHNldF9UeXBlAGdldF9DdWx0dXJlAHNldF9DdWx0dXJlAHJlc291cmNlQ3VsdHVy
+ZQBmbG9hdEN1bHR1cmUAZ2V0X0ludmFyaWFudEN1bHR1cmUAY3VsdHVyZQBDYXB0dXJlAEFwcGxp
+Y2F0aW9uU2V0dGluZ3NCYXNlAFBhcnNlAGZpbGVEYXRlAEVkaXRvckJyb3dzYWJsZVN0YXRlAENv
+bXBpbGVyR2VuZXJhdGVkQXR0cmlidXRlAERlYnVnZ2VyTm9uVXNlckNvZGVBdHRyaWJ1dGUARGVi
+dWdnYWJsZUF0dHJpYnV0ZQBFZGl0b3JCcm93c2FibGVBdHRyaWJ1dGUAQXNzZW1ibHlUaXRsZUF0
+dHJpYnV0ZQBBc3NlbWJseVRyYWRlbWFya0F0dHJpYnV0ZQBUYXJnZXRGcmFtZXdvcmtBdHRyaWJ1
+dGUAQXNzZW1ibHlDb25maWd1cmF0aW9uQXR0cmlidXRlAEFzc2VtYmx5RGVzY3JpcHRpb25BdHRy
+aWJ1dGUAQ29tcGlsYXRpb25SZWxheGF0aW9uc0F0dHJpYnV0ZQBBc3NlbWJseVByb2R1Y3RBdHRy
+aWJ1dGUAQXNzZW1ibHlDb3B5cmlnaHRBdHRyaWJ1dGUAU1NJU1NjcmlwdENvbXBvbmVudEVudHJ5
+UG9pbnRBdHRyaWJ1dGUAQXNzZW1ibHlDb21wYW55QXR0cmlidXRlAFJ1bnRpbWVDb21wYXRpYmls
+aXR5QXR0cmlidXRlAFByZUV4ZWN1dGUAQnl0ZQBnZXRfVmFsdWUAdmFsdWUAc2V0X1NvdXJjZVN5
+c3RlbUVudHJ5UmVmAFN5c3RlbS5SdW50aW1lLlZlcnNpb25pbmcAVG9TdHJpbmcAR2V0U3RyaW5n
+AE1hdGNoAGdldF9Mb2dUaW1lTG9jYWwAU3lzdGVtLkNvbXBvbmVudE1vZGVsAFNDXzg3ZDhkNDNi
+NWU5YjQyMGZiNDk3N2VlNDFlYmRjYTFjLmRsbABnZXRfU2lnbmFsRGF0YV9Jc051bGwAc2V0X0xp
+Z2h0SWRfSXNOdWxsAHNldF9TcGVlZF9Jc051bGwAc2V0X0Rpc3RhbmNlX0lzTnVsbABnZXRfVXNl
+cm5hbWVfSXNOdWxsAHNldF9FeHBlY3RlZFRpbWVfSXNOdWxsAHNldF9Mb2dUaW1lX0lzTnVsbABz
+ZXRfQWN0aXZhdGlvblRpbWVfSXNOdWxsAHNldF9UeXBlX0lzTnVsbABzZXRfU291cmNlU3lzdGVt
+RW50cnlSZWZfSXNOdWxsAGdldF9Mb2dUaW1lTG9jYWxfSXNOdWxsAHNldF9MaW5lRGVzaWduYXRp
+b25fSXNOdWxsAHNldF9WZWhpY2xlTnVtYmVyX0lzTnVsbABzZXRfUmVsYXlOdW1iZXJfSXNOdWxs
+AHNldF9Kb3VybmV5TnVtYmVyX0lzTnVsbABzZXRfRGVsYXlNaW51dGVzX0lzTnVsbABnZXRfU291
+cmNlRW5kcG9pbnRfSXNOdWxsAGdldF9EaXJlY3Rpb25UZXh0X0lzTnVsbABTZXROdWxsAGdldF9J
+dGVtAHNldF9JdGVtAFN5c3RlbQByZXNvdXJjZU1hbgBTY3JpcHRNYWluAHNldF9MaW5lRGVzaWdu
+YXRpb24AU3lzdGVtLkNvbmZpZ3VyYXRpb24AU3lzdGVtLkdsb2JhbGl6YXRpb24AU3lzdGVtLlJl
+ZmxlY3Rpb24ASW52YWxpZE9wZXJhdGlvbkV4Y2VwdGlvbgBTdHJpbmdDb21wYXJpc29uAEdldEN1
+bHR1cmVJbmZvAE91dHB1dE5hbWVNYXAAT3V0cHV0TWFwAE1pY3Jvc29mdC5TcWxTZXJ2ZXIuRFRT
+UnVudGltZVdyYXAAQ2hhcgBzZXRfVmVoaWNsZU51bWJlcgByb3dOdW1iZXIAc2V0X1JlbGF5TnVt
+YmVyAHNldF9Kb3VybmV5TnVtYmVyAElGb3JtYXRQcm92aWRlcgBJbnB1dDBCdWZmZXIAUGlwZWxp
+bmVCdWZmZXIAU2NyaXB0QnVmZmVyAGdldF9SZXNvdXJjZU1hbmFnZXIATWljcm9zb2Z0LlNxbFNl
+cnZlci5EdHMuUnVudGltZS5XcmFwcGVyAC5jdG9yAC5jY3RvcgBTeXN0ZW0uRGlhZ25vc3RpY3MA
+U3lzdGVtLlJ1bnRpbWUuQ29tcGlsZXJTZXJ2aWNlcwBTeXN0ZW0uUmVzb3VyY2VzAFNDXzg3ZDhk
+NDNiNWU5YjQyMGZiNDk3N2VlNDFlYmRjYTFjLlByb3BlcnRpZXMuUmVzb3VyY2VzLnJlc291cmNl
+cwBEZWJ1Z2dpbmdNb2RlcwBTQ184N2Q4ZDQzYjVlOWI0MjBmYjQ5NzdlZTQxZWJkY2ExYy5Qcm9w
+ZXJ0aWVzAGdldF9SZWFkT25seVZhcmlhYmxlcwBzZXRfRGVsYXlNaW51dGVzAEJ1ZmZlckNvbHVt
+bkluZGV4ZXMAR2V0Q29sdW1uSW5kZXhlcwBTZXR0aW5ncwBFcXVhbHMAU3lzdGVtLlRleHQuUmVn
+dWxhckV4cHJlc3Npb25zAENvbm5lY3Rpb25zAENvbmNhdABPYmplY3QARGF0ZVRpbWVPZmZzZXQA
+RW5kT2ZSb3dzZXQAb3BfSW1wbGljaXQAU3BsaXQAZ2V0X0RlZmF1bHQAVXNlckNvbXBvbmVudABQ
+YXJlbnRDb21wb25lbnQAU2NyaXB0Q29tcG9uZW50AGdldF9Tb3VyY2VFbmRwb2ludABNaWNyb3Nv
+ZnQuU3FsU2VydmVyLlR4U2NyaXB0AE1pY3Jvc29mdC5TcWxTZXJ2ZXIuUGlwZWxpbmVIb3N0AElu
+cHV0MF9Qcm9jZXNzSW5wdXQAZ2V0X0RpcmVjdGlvblRleHQAR2V0VmFsdWVXaXRoQ29udGV4dABT
+Y3JpcHRDb21wb25lbnRFdmFsQ29udGV4dABnZXRfRXZhbHVhdG9yQ29udGV4dABJbnB1dDBfUHJv
+Y2Vzc0lucHV0Um93AE5leHRSb3cAUmVnZXgAZ2V0X0Fzc2VtYmx5AG9wX0VxdWFsaXR5AElzTnVs
+bE9yRW1wdHkAAAAAAAtkAGEALQBEAEsAAQtcAGQAewA4AH0AAAM6AAAPUgBFAFEAXwBOAE8ATQAA
+D0MAQQBOAF8ATgBPAE0AAICbSQBzAE4AdQBsAGwAIABwAHIAbwBwAGUAcgB0AHkAIABjAGEAbgBu
+AG8AdAAgAGIAZQAgAHMAZQB0ACAAdABvACAARgBhAGwAcwBlAC4AIABBAHMAcwBpAGcAbgAgAGEA
+IAB2AGEAbAB1AGUAIAB0AG8AIAB0AGgAZQAgAGMAbwBsAHUAbQBuACAAaQBuAHMAdABlAGEAZAAu
+AAAPSQBuAHAAdQB0ACAAMAAAGUQAYQB0AGEARgBpAGwAZQBOAGEAbQBlAABxUwBDAF8AOAA3AGQA
+OABkADQAMwBiADUAZQA5AGIANAAyADAAZgBiADQAOQA3ADcAZQBlADQAMQBlAGIAZABjAGEAMQBj
+AC4AUAByAG8AcABlAHIAdABpAGUAcwAuAFIAZQBzAG8AdQByAGMAZQBzAAAAAOGBVzDPU+JHq/Fz
+lCAkFjsABCABAQgDIAABBSABARERBCABAQ4FIAEBEWEEAAASOQUAARI5DgYAAhJ1Dg4DIAAOCQcE
+HQ4RPRE9DggAAhE9ET0RfQYAARFNET0GIAEdDh0DCAACET0OEoCJBCAAET0GAAMODg4OBQACAg4O
+BAABCA4EAAECDgcAAgwOEoCJCSADARJFHQgSSQMGEkUDBh0IBSABET0IBCABAggEIAEOCAUgAgEI
+HAMgAAIHIAICDhGAnQUgAR0ICAUgABKAoQYgARKApRwFAAASgKkGIAEcEoCtCAABEoCxEYC1BSAA
+EoC5ByACAQ4SgLkIt3pcVhk04IkIiYRdzYCAzJEDBhI5AgYOAgYIAwYSFAMGEhgDBhJRAwYSXQMG
+EiAFIAEBEgwEIAEBAgUgAQERTQQgAQEFBCABAQwJIAQBCA4SRRJJBSABARJRBAAAEl0FAAEBEjkE
+AAASIAMAAAEEKAARPQMoAAIDKAAOBCgAEU0DKAAIAygABQMoAAwECAASXQQIABI5BAgAEiAIAQAI
+AAAAAAAeAQABAFQCFldyYXBOb25FeGNlcHRpb25UaHJvd3MBCAEAAgAAAAAAKAEAI1NDXzg3ZDhk
+NDNiNWU5YjQyMGZiNDk3N2VlNDFlYmRjYTFjAAAFAQAAAAAJAQAEQ00wMgAAGgEAFUNvcHlyaWdo
+dCBAIENNMDIgMjAxNgAARwEAGi5ORVRGcmFtZXdvcmssVmVyc2lvbj12NC4wAQBUDhRGcmFtZXdv
+cmtEaXNwbGF5TmFtZRAuTkVUIEZyYW1ld29yayA0BAEAAAC0AAAAzsrvvgEAAACRAAAAbFN5c3Rl
+bS5SZXNvdXJjZXMuUmVzb3VyY2VSZWFkZXIsIG1zY29ybGliLCBWZXJzaW9uPTQuMC4wLjAsIEN1
+bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OSNTeXN0ZW0uUmVz
+b3VyY2VzLlJ1bnRpbWVSZXNvdXJjZVNldAIAAAAAAAAAAAAAAFBBRFBBRFC0AAAAMEAAAAAAAAAA
+AAAASkAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAADxAAAAAAAAAAAAAAAAAX0NvckRsbE1haW4A
+bXNjb3JlZS5kbGwAAAAAAP8lACAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABABAA
+AAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAAAABIAAAAWGAA
+APwDAAAAAAAAAAAAAPwDNAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBPAAAAAAC9BO/+
+AAABAAAAAQAAAAAAAAABAAAAAAA/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAARAAAAAEAVgBh
+AHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBvAG4AAAAAAAAA
+sARcAwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAAA4AwAAAQAwADAAMAAwADAANABi
+ADAAAAAaAAEAAQBDAG8AbQBtAGUAbgB0AHMAAAAAAAAAKgAFAAEAQwBvAG0AcABhAG4AeQBOAGEA
+bQBlAAAAAABDAE0AMAAyAAAAAABwACQAAQBGAGkAbABlAEQAZQBzAGMAcgBpAHAAdABpAG8AbgAA
+AAAAUwBDAF8AOAA3AGQAOABkADQAMwBiADUAZQA5AGIANAAyADAAZgBiADQAOQA3ADcAZQBlADQA
+MQBlAGIAZABjAGEAMQBjAAAAMAAIAAEARgBpAGwAZQBWAGUAcgBzAGkAbwBuAAAAAAAxAC4AMAAu
+ADAALgAwAAAAcAAoAAEASQBuAHQAZQByAG4AYQBsAE4AYQBtAGUAAABTAEMAXwA4ADcAZAA4AGQA
+NAAzAGIANQBlADkAYgA0ADIAMABmAGIANAA5ADcANwBlAGUANAAxAGUAYgBkAGMAYQAxAGMALgBk
+AGwAbAAAAFAAFgABAEwAZQBnAGEAbABDAG8AcAB5AHIAaQBnAGgAdAAAAEMAbwBwAHkAcgBpAGcA
+aAB0ACAAQAAgAEMATQAwADIAIAAyADAAMQA2AAAAKgABAAEATABlAGcAYQBsAFQAcgBhAGQAZQBt
+AGEAcgBrAHMAAAAAAAAAAAB4ACgAAQBPAHIAaQBnAGkAbgBhAGwARgBpAGwAZQBuAGEAbQBlAAAA
+UwBDAF8AOAA3AGQAOABkADQAMwBiADUAZQA5AGIANAAyADAAZgBiADQAOQA3ADcAZQBlADQAMQBl
+AGIAZABjAGEAMQBjAC4AZABsAGwAAABoACQAAQBQAHIAbwBkAHUAYwB0AE4AYQBtAGUAAAAAAFMA
+QwBfADgANwBkADgAZAA0ADMAYgA1AGUAOQBiADQAMgAwAGYAYgA0ADkANwA3AGUAZQA0ADEAZQBi
+AGQAYwBhADEAYwAAADQACAABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4A
+MAAuADAAAAA4AAgAAQBBAHMAcwBlAG0AYgBsAHkAIABWAGUAcgBzAGkAbwBuAAAAMQAuADAALgAw
+AC4AMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAwAAABcMAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
+                      </arrayElements>
+                    </property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the Microsoft Visual Studio Tools for Applications project. Project names must be unique within a package."
+                      name="VSTAProjectName"
+                      typeConverter="NOTBROWSABLE">SC_87d8d43b5e9b420fb4977ee41ebdca1c</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the programming language used by the script."
+                      name="ScriptLanguage"
+                      typeConverter="Microsoft.SqlServer.VSTAHosting.ScriptingLanguages">CSharp</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies a comma-separated list of read-only variables."
+                      name="ReadOnlyVariables"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIVariablePickerDlg">User::DataFileName</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies a comma-separated list of read/write variables."
+                      name="ReadWriteVariables"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIWriteableVariablePickerDlg"></property>
+                    <property
+                      dataType="System.String"
+                      description="List of breakpoints present on the script."
+                      isArray="true"
+                      name="BreakpointCollection"
+                      typeConverter="NOTBROWSABLE">
+                      <arrayElements
+                        arrayElementCount="0" />
+                    </property>
+                    <property
+                      dataType="System.String"
+                      description="Checksum to match component metedata against compiled codes."
+                      name="MetadataChecksum"
+                      typeConverter="NOTBROWSABLE">046bbb413c7c3fce55f8c9a7c11e4c2e</property>
+                    <property
+                      dataType="System.String"
+                      description="Checksum to match component metedata against compiled codes."
+                      name="MetadataShaChecksum"
+                      typeConverter="NOTBROWSABLE">58987e64696e78abbb515aac3c6de9815fc63353</property>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">Microsoft.ScriptComponentHost</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Inputs[Input 0]"
+                      hasSideEffects="true"
+                      name="Input 0">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Inputs[Input 0].Columns[LogTimeLocal]"
+                          cachedDataType="date"
+                          cachedName="LogTimeLocal"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[LogTimeLocal]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Inputs[Input 0].Columns[SignalData]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="1000"
+                          cachedName="SignalData"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[SignalData]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Inputs[Input 0].Columns[DirectionText]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="3"
+                          cachedName="DirectionText"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[DirectionText]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Inputs[Input 0].Columns[Username]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="20"
+                          cachedName="Username"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[Username]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Inputs[Input 0].Columns[SourceEndpoint]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="SourceEndpoint"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[SourceEndpoint]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0]"
+                      name="Output 0"
+                      synchronousInputId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Inputs[Input 0]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[SourceSystemEntryRef]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[SourceSystemEntryRef]"
+                          name="SourceSystemEntryRef" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[LogTime]"
+                          dataType="dbTimeStampOffset"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[LogTime]"
+                          name="LogTime"
+                          scale="4" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[ActivationTime]"
+                          dataType="dbTimeStampOffset"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[ActivationTime]"
+                          name="ActivationTime" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[LightId]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[LightId]"
+                          name="LightId" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[RelayNumber]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[RelayNumber]"
+                          name="RelayNumber" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[Type]"
+                          dataType="ui1"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[Type]"
+                          name="Type" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[LineDesignation]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[LineDesignation]"
+                          name="LineDesignation" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[JourneyNumber]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[JourneyNumber]"
+                          name="JourneyNumber" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[VehicleNumber]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[VehicleNumber]"
+                          name="VehicleNumber" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[DelayMinutes]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[DelayMinutes]"
+                          name="DelayMinutes" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[Distance]"
+                          dataType="r4"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[Distance]"
+                          name="Distance" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[Speed]"
+                          dataType="r4"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[Speed]"
+                          name="Speed" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[ExpectedTime]"
+                          dataType="dbTimeStampOffset"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0].Columns[ExpectedTime]"
+                          name="ExpectedTime" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container\Data Flow Task\Row Count"
+                  componentClassID="Microsoft.RowCount"
+                  contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+                  name="Row Count">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable to hold the row count."
+                      name="VariableName">User::ErrorCount</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container\Data Flow Task\Row Count.Inputs[Row Count Input 1]"
+                      hasSideEffects="true"
+                      name="Row Count Input 1">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\Data Flow Task\Row Count.Outputs[Row Count Output 1]"
+                      name="Row Count Output 1"
+                      synchronousInputId="Package\Foreach Loop Container\Data Flow Task\Row Count.Inputs[Row Count Input 1]">
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Foreach Loop Container\Data Flow Task.Paths[Derived Column Output]"
+                  endId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Inputs[Input 0]"
+                  name="Derived Column Output"
+                  startId="Package\Foreach Loop Container\Data Flow Task\Add Metadata.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Foreach Loop Container\Data Flow Task.Paths[Flat File Source Error Output]"
+                  endId="Package\Foreach Loop Container\Data Flow Task\Row Count.Inputs[Row Count Input 1]"
+                  name="Flat File Source Error Output"
+                  startId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Error Output]" />
+                <path
+                  refId="Package\Foreach Loop Container\Data Flow Task.Paths[Flat File Source Output]"
+                  endId="Package\Foreach Loop Container\Data Flow Task\Add Metadata.Inputs[Derived Column Input]"
+                  name="Flat File Source Output"
+                  startId="Package\Foreach Loop Container\Data Flow Task\Flat File Source.Outputs[Flat File Source Output]" />
+                <path
+                  refId="Package\Foreach Loop Container\Data Flow Task.Paths[Output 0]"
+                  endId="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination.Inputs[ADO NET Destination Input]"
+                  name="Output 0"
+                  startId="Package\Foreach Loop Container\Data Flow Task\Parse SignalData.Outputs[Output 0]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{DDCD8A24-6F40-44CE-A0F4-63B3F4093AA1}"
+          DTS:ObjectName="{DDCD8A24-6F40-44CE-A0F4-63B3F4093AA1}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::DataFileName" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Import Data Files"
+      DTS:CreationName="Microsoft.ExecuteProcess"
+      DTS:DelayValidation="True"
+      DTS:Description="Execute Process Task"
+      DTS:DTSID="{41058A84-7E93-485A-B8ED-CC397474581D}"
+      DTS:ExecutableType="Microsoft.ExecuteProcess"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Import Data Files"
+      DTS:TaskContact="Execute Process Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="Arguments">"-ExecutionPolicy ByPass -Command \"" + REPLACE(@[User::ImportCommand], "\"", "\\\"")  + "\""</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="WorkingDirectory">@[$Project::AppDirectoryPath]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <ExecuteProcessData
+          Executable="powershell"
+          RequireFullFileName="False"
+          Arguments="-ExecutionPolicy ByPass -Command &quot;\\biudv03\AppFiles\RT\RT_SignalPriority\Import_Activation_Proxy.ps1 -Username 'SIGNALCONTROL01\sk-dw-reader' -Password 'LysiLygt1' -UncPath '\\129.142.32.142\Logs' -SourcePath '\\129.142.32.142\Logs\Signal Priority Proxy' -DestPath '\\biudv03\TempData\RT\RT_SignalPriority' &gt;&gt; '\\biudv03\Logs\RT\RT_SignalPriority\Import_Activation_Proxy-20180129-164507.log' 2&gt;&amp;1&quot;"
+          WorkingDirectory="\\biudv03\AppFiles\RT\RT_SignalPriority"
+          WindowStyle="Hidden" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Merge to EDW"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{6988332C-1304-4C91-8CF5-9D779F24BD33}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Merge to EDW"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{6A8861C6-38CD-44C7-BC4C-2754EF7688D1}"
+          SQLTask:SqlStatementSource="merge [DW_EDW].[data].[RT_SignalPriority_Activation] as t&#xA;using [DW_DSA].[staging].[RT_SignalPriority_Activation] as s&#xA;on t.[SourceSystemCode] = s.[SourceSystemCode]&#xA;   and t.[SourceSystemEntryRef] = s.[SourceSystemEntryRef]&#xA;when not matched by target then insert&#xA;                                    (&#xA;                                        [SourceSystemCode]&#xA;                                       ,[SourceSystemEntryRef]&#xA;                                       ,[LogTime]&#xA;                                       ,[DataFlowDirection]&#xA;                                       ,[Username]&#xA;                                       ,[ActivationTime]&#xA;                                       ,[LightId]&#xA;                                       ,[RelayNumber]&#xA;                                       ,[Type]&#xA;                                       ,[LineDesignation]&#xA;                                       ,[JourneyNumber]&#xA;                                       ,[VehicleNumber]&#xA;                                       ,[DelayMinutes]&#xA;                                       ,[Distance]&#xA;                                       ,[Speed]&#xA;                                       ,[ExpectedTime]&#xA;                                    )&#xA;                                values&#xA;                                    (&#xA;                                        s.[SourceSystemCode]&#xA;                                       ,s.[SourceSystemEntryRef]&#xA;                                       ,s.[LogTime]&#xA;                                       ,s.[DataFlowDirection]&#xA;                                       ,s.[Username]&#xA;                                       ,s.[ActivationTime]&#xA;                                       ,s.[LightId]&#xA;                                       ,s.[RelayNumber]&#xA;                                       ,s.[Type]&#xA;                                       ,s.[LineDesignation]&#xA;                                       ,s.[JourneyNumber]&#xA;                                       ,s.[VehicleNumber]&#xA;                                       ,s.[DelayMinutes]&#xA;                                       ,s.[Distance]&#xA;                                       ,s.[Speed]&#xA;                                       ,s.[ExpectedTime]&#xA;                                    )&#xA;;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Staging Area - Post Load"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{B31A5762-84C1-434B-A44F-EABAE20A5F88}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Staging Area - Post Load"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{6A8861C6-38CD-44C7-BC4C-2754EF7688D1}"
+          SQLTask:SqlStatementSource="truncate table [staging].[RT_SignalPriority_Activation];" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Staging Area - Pre Load"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{FCD95C7B-2D4F-4FA0-AA9E-C0C3D66FEA3B}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Staging Area - Pre Load"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{6A8861C6-38CD-44C7-BC4C-2754EF7688D1}"
+          SQLTask:SqlStatementSource="truncate table [staging].[RT_SignalPriority_Activation];" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{F420846A-03CF-4C00-A4AA-8132D4032913}"
+      DTS:From="Package\Ensure Log Path"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Import Data Files" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{0A5D5273-0CEF-442A-A25A-624FC21AC826}"
+      DTS:From="Package\Ensure Temp Path"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Ensure Log Path" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{708813FD-3A71-4440-83E5-7C820CDE5FB2}"
+      DTS:From="Package\Foreach Loop Container"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Merge to EDW" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{FFBF6C35-4D68-40EA-837F-9650DE453950}"
+      DTS:From="Package\Import Data Files"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Truncate Staging Area - Pre Load" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{5DC1FDBC-FBE7-4BFE-8968-94E84CDA5F9B}"
+      DTS:From="Package\Truncate Staging Area - Pre Load"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Foreach Loop Container" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{9050EF0A-74B6-4466-B33E-03FD4515A896}"
+      DTS:From="Package\Merge to EDW"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Truncate Staging Area - Post Load" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{86B7ACDE-10C6-466E-AEB9-200AE479454F}"
+      DTS:From="Package\Truncate Staging Area - Post Load"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\Cleanup all but last" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Ensure Log Path"
+          TopLeft="66,107.5" />
+        <NodeLayout
+          Size="167,42"
+          Id="Package\Ensure Temp Path"
+          TopLeft="61.5,5.5" />
+        <NodeLayout
+          Size="153,42"
+          Id="Package\Foreach Loop Container\Data Flow Task"
+          TopLeft="5.5,5.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="164,103"
+          Size="164,146"
+          Id="Package\Foreach Loop Container"
+          TopLeft="63.0000000000001,413.5" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Import Data Files"
+          TopLeft="63.5,209.5" />
+        <NodeLayout
+          Size="149,42"
+          Id="Package\Merge to EDW"
+          TopLeft="70.5000000000001,619.5" />
+        <NodeLayout
+          Size="243,42"
+          Id="Package\Truncate Staging Area - Post Load"
+          TopLeft="23.5000000000001,721.5" />
+        <NodeLayout
+          Size="238,42"
+          Id="Package\Truncate Staging Area - Pre Load"
+          TopLeft="26.0000000000001,311.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="145,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="145,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="145,559.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="145,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="145,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="145,661.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="168,42"
+          Id="Package\Cleanup all but last\Empty LogFilePath"
+          TopLeft="18,3" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="225,100"
+          Size="225,143"
+          Id="Package\Cleanup all but last"
+          TopLeft="28,815" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="142.75,763.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,51.5"
+              Start="0,0"
+              End="0,44">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Foreach Loop Container\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="160,42"
+          Id="Package\Foreach Loop Container\Data Flow Task\Parse SignalData"
+          TopLeft="16,209.5" />
+        <NodeLayout
+          Size="153,42"
+          Id="Package\Foreach Loop Container\Data Flow Task\Flat File Source"
+          TopLeft="19.5,5.5" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination"
+          TopLeft="5.50000000000003,311.5" />
+        <NodeLayout
+          Size="146,42"
+          Id="Package\Foreach Loop Container\Data Flow Task\Add Metadata"
+          TopLeft="23,107.5" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\Data Flow Task.Paths[Output 0]"
+          TopLeft="96,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\Data Flow Task.Paths[Flat File Source Output]"
+          TopLeft="96,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\Data Flow Task.Paths[Derived Column Output]"
+          TopLeft="96,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="132,42"
+          Id="Package\Foreach Loop Container\Data Flow Task\Row Count"
+          TopLeft="289,64" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\Data Flow Task.Paths[Flat File Source Error Output]"
+          TopLeft="172.5,26.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="116.5,58.5"
+              Start="0,0"
+              End="109,58.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="54.25,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="54.25,0"
+                    Point2="58.25,0"
+                    Point3="58.25,4" />
+                  <mssgle:LineSegment
+                    End="58.25,54.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="58.25,54.5"
+                    Point2="58.25,58.5"
+                    Point3="62.25,58.5" />
+                  <mssgle:LineSegment
+                    End="109,58.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-5.37638671874999,-17.609375,127.2527734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Foreach Loop Container\Data Flow Task\ADO NET Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "RT_SignalPriority_Integration", "RT_SignalPriority_Integration\RT_SignalPriority_Integration.dtproj", "{A1BD8762-20AA-43E3-904A-D1C91684DFFC}"
+EndProject
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "RT_SignalPriority_Reporting", "RT_SignalPriority_Reporting\RT_SignalPriority_Reporting.rptproj", "{EDB78C7D-0834-4E21-9841-8C3DD0C27640}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Dev2016|Default = Dev2016|Default
+		Prod2016|Default = Prod2016|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A1BD8762-20AA-43E3-904A-D1C91684DFFC}.Dev2016|Default.ActiveCfg = Dev2016
+		{A1BD8762-20AA-43E3-904A-D1C91684DFFC}.Dev2016|Default.Build.0 = Dev2016
+		{A1BD8762-20AA-43E3-904A-D1C91684DFFC}.Prod2016|Default.ActiveCfg = Prod2016
+		{A1BD8762-20AA-43E3-904A-D1C91684DFFC}.Prod2016|Default.Build.0 = Prod2016
+		{EDB78C7D-0834-4E21-9841-8C3DD0C27640}.Dev2016|Default.ActiveCfg = Dev2016
+		{EDB78C7D-0834-4E21-9841-8C3DD0C27640}.Dev2016|Default.Build.0 = Dev2016
+		{EDB78C7D-0834-4E21-9841-8C3DD0C27640}.Prod2016|Default.ActiveCfg = Prod2016
+		{EDB78C7D-0834-4E21-9841-8C3DD0C27640}.Prod2016|Default.Build.0 = Prod2016
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

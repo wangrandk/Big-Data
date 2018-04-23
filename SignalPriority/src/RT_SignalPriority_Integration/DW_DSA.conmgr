@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="DW_DSA"
+  DTS:DTSID="{6A8861C6-38CD-44C7-BC4C-2754EF7688D1}"
+  DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:PropertyExpression
+    DTS:Name="ServerName">@[$Project::DwhServer]</DTS:PropertyExpression>
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=dwhudv03\inst201;Initial Catalog=DW_DSA;Integrated Security=True;Application Name=RT_SignalPriority;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
